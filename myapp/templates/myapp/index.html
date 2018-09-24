@@ -43,17 +43,22 @@
             success: function (data) {
                 frm.html('');
                 if (data.state == 'PENDING') {
-                    frm.html('Please wait...');
+                    frm.html('');
                 }
-                else if (data.state == 'PROGRESS' || data.state == 'SUCCESS') {
+                else if (data.state == 'PROGRESS') {
                     pgrbar.css('display', 'inline');
                     pgrbar.val(data.result.percent);
-                    frm.html('User created');
+                    frm.html('');
+                }
+                else if (data.state == 'SUCCESS'){
+                    pgrbar.css('display', 'inline');
+                    pgrbar.val(data.result.percent);
+                    frm.html('the total was'+ data.result.total + 'getting' + data.result.calc);
                 }
                 if (data.state != 'SUCCESS') {
                     setTimeout(function () {
                         get_task_info(task_id)
-                    }, 1000);
+                    }, 200);
                 }
             },
             error: function (data) {

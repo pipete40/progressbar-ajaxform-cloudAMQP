@@ -16,7 +16,9 @@ def create_random_user_accounts(total_user):
         User.objects.create_user(username=username, email=email, password=password)
         """
         time.sleep(0.5)
+
         current_task.update_state(state='PROGRESS',
                                   meta={'current': i, 'total': total_user,
                                         'percent': int((float(i) / total_user) * 100)})
-    return 'done'
+
+    return {'current': total_user, 'total': total_user, 'percent': 100, 'calc': 50}
