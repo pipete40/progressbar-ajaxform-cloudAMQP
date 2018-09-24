@@ -16,9 +16,12 @@
     <input type="submit" value="Submit"/>
 </form>
 
+<p id="result"> </p>
+
 <script type="text/javascript">
     var frm = $('#generate-user-form');
     var pgrbar = $('#progress-bar');
+    var rel = document.getElementById("result").innerHTML;
     frm.submit(function () {
         $.ajax({
             type: frm.attr('method'),
@@ -43,9 +46,12 @@
             data: {'task_id': task_id},
             success: function (data) {
                 frm.html('');
-                if (data.state == 'PROGRESS' || data.state == 'SUCCESS') {
+                if (data.state == 'PROGRESS') {
                     pgrbar.css('display', 'inline');
                     pgrbar.val(data.result.percent);
+                }
+                else if (data.state == 'SUCCESS'){
+                    rel = "Results of " + data.result.total;
                 }
                 if (data.state != 'SUCCESS') {
                     setTimeout(function () {

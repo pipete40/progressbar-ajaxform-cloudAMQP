@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9a7a0347-dc37-42cf-8ec4-1817392eb216" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/myapp/templates/myapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/myapp/templates/myapp/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="9a7a0347-dc37-42cf-8ec4-1817392eb216" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,13 +30,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="497" />
+          <entry key="html" value="503" />
           <entry key="py" value="169" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="497" />
+          <entry key="HTML" value="503" />
           <entry key="Python" value="169" />
         </counts>
       </usages-collector>
@@ -119,8 +117,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/myapp/templates/myapp/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="531">
-              <caret line="56" column="26" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
+            <state relative-caret-position="572">
+              <caret line="44" column="29" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
               <folding>
                 <element signature="n#style#0;n#progress#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -262,8 +260,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1091" y="33" width="2691" height="2127" extended-state="4" />
-    <editor active="true" />
+    <frame x="1095" y="33" width="2691" height="2127" extended-state="4" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.36820084" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -384,8 +381,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/myapp/templates/myapp/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="56" column="26" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
+        <state relative-caret-position="572">
+          <caret line="44" column="29" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
           <folding>
             <element signature="n#style#0;n#progress#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
