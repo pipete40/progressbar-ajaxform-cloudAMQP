@@ -16,12 +16,17 @@
     <input type="submit" value="Submit"/>
 </form>
 
-<p id="result"> </p>
+<p id="resultA"> Hola </p>
+<p id="resultB"> Hola </p>
+<p id="resultC"> Hola </p>
 
 <script type="text/javascript">
     var frm = $('#generate-user-form');
     var pgrbar = $('#progress-bar');
-    var rel = document.getElementById("result").innerHTML;
+    var relA = $('#resultA');
+    var relB = $('#resultB');
+    var relC = $('#resultC');
+
     frm.submit(function () {
         $.ajax({
             type: frm.attr('method'),
@@ -51,7 +56,10 @@
                     pgrbar.val(data.result.percent);
                 }
                 else if (data.state == 'SUCCESS'){
-                    rel = "Results of " + data.result.total;
+                    relA.text("ResultsA of " + data.result.total);
+                    relB.html("ResultsB of " + data.result.total);
+                    relC.val("ResultsC of " + data.result.total);
+                    pgrbar.css('display', 'none');
                 }
                 if (data.state != 'SUCCESS') {
                     setTimeout(function () {
