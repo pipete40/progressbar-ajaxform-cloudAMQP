@@ -33,13 +33,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="316" />
+          <entry key="html" value="492" />
           <entry key="py" value="169" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="316" />
+          <entry key="HTML" value="492" />
           <entry key="Python" value="169" />
         </counts>
       </usages-collector>
@@ -99,11 +99,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myapp/tasks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="23" column="82" selection-start-line="23" selection-start-column="82" selection-end-line="23" selection-end-column="82" />
-              <folding>
-                <element signature="e#0#56#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="56" lean-forward="true" selection-start-column="56" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -123,8 +120,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/myapp/templates/myapp/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="55" column="74" selection-start-line="55" selection-start-column="74" selection-end-line="55" selection-end-column="74" />
+            <state relative-caret-position="-129">
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
               <folding>
                 <element signature="n#style#0;n#progress#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -381,18 +378,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/myapp/tasks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="82" selection-start-line="23" selection-start-column="82" selection-end-line="23" selection-end-column="82" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
+        <state>
+          <caret column="56" lean-forward="true" selection-start-column="56" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/myapp/templates/myapp/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="55" column="74" selection-start-line="55" selection-start-column="74" selection-end-line="55" selection-end-column="74" />
+        <state relative-caret-position="-129">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
           <folding>
             <element signature="n#style#0;n#progress#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
