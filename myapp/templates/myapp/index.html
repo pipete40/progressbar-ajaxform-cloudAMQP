@@ -2,6 +2,8 @@
 <head>
     <title>Celery Demo</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href= "{% static 'css/loading-bar.css' %}" />
+    <script src= "{% static 'js/loading-bar.js' %}"></script>
 </head>
 
 <body style="text-align: center;">
@@ -9,6 +11,8 @@
 
 
 <progress id="progress-bar" value="0" max="100" style="display:none; margin-bottom: 1em;"></progress>
+<div class="ldBar" data-value="50"></div>
+
 
 <form id="generate-user-form" action="/generate-user/" method="post">
     {% csrf_token %}
@@ -16,16 +20,12 @@
     <input type="submit" value="Submit"/>
 </form>
 
-<p id="resultA"> Hola </p>
-<p id="resultB"> Hola </p>
-<p id="resultC"> Hola </p>
+<p id="result"> Hola </p>
 
 <script type="text/javascript">
     var frm = $('#generate-user-form');
     var pgrbar = $('#progress-bar');
-    var relA = $('#resultA');
-    var relB = $('#resultB');
-    var relC = $('#resultC');
+    var rel = $('#result');
 
     frm.submit(function () {
         $.ajax({
@@ -56,9 +56,7 @@
                     pgrbar.val(data.result.percent);
                 }
                 else if (data.state == 'SUCCESS'){
-                    relA.text("ResultsA of " + data.result.total);
-                    relB.html("ResultsB of " + data.result.total);
-                    relC.val("ResultsC of " + data.result.total);
+                    rel.text("Results of " + data.result.total);
                     pgrbar.css('display', 'none');
                 }
                 if (data.state != 'SUCCESS') {
@@ -68,7 +66,7 @@
                 }
             },
             error: function (data) {
-                frm.html("Something went wrong! B");
+                rel.text("Something went wrong! B");
             }
         });
     }
