@@ -131,7 +131,7 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
-broker_url = os.environ.get('CLOUDAMQP_URL')
+broker_url = "amqp://xklnmsok:NJIW-ppRgD7QH7W6f0Q3rXD980GQqNLF@spider.rmq.cloudamqp.com/xklnmsok"
 broker_pool_limit = 1 # Will decrease connection usage
 broker_heartbeat = None # We're using TCP keep-alive instead
 broker_connection_timeout = 30 # May require a long timeout due to Linux DNS timeouts etc
