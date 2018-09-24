@@ -1,5 +1,6 @@
-import json
+
 from django.shortcuts import render
+import json
 from celery.result import AsyncResult
 from django.http import HttpResponse
 from myapp.forms import GenerateRandomUserForm
