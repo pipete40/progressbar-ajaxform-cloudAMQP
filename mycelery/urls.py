@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from myapp.views import generate_random_user, get_task_info
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', generate_random_user),
     path('get-task-info/', get_task_info),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
