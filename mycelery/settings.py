@@ -132,10 +132,11 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
 #broker_url = "amqp://xklnmsok:NJIW-ppRgD7QH7W6f0Q3rXD980GQqNLF@spider.rmq.cloudamqp.com/xklnmsok"
-broker_pool_limit = 1 # Will decrease connection usage
-broker_heartbeat = None # We're using TCP keep-alive instead
-broker_connection_timeout = 30 # May require a long timeout due to Linux DNS timeouts etc
-result_backend = 'rpc'# AMQP is not recommended as result backend as it creates thousands of queues
-event_queue_expires = 60 # Will delete all celeryev. queues without consumers after 1 minute.
-worker_prefetch_multiplier = 1 # Disable prefetching, it's causes problems and doesn't help performance
-worker_concurrency = 50
+#result_backend = 'rpc'# AMQP is not recommended as result backend as it creates thousands of queues
+
+BROKER_POOL_LIMIT = 1 # Will decrease connection usage
+BROKER_HEARTBEAT = None # We're using TCP keep-alive instead
+BROKER_CONNECTION_TIMEOUT = 30 # May require a long timeout due to Linux DNS timeouts etc
+CELERY_EVENT_QUEUE_EXPIRES = 60 # Will delete all celeryev. queues without consumers after 1 minute.
+CELERYD_PREFETCH_MULTIPLIER = 1 # Disable prefetching, it's causes problems and doesn't help performance
+CELERYD_CONCURRENCY = 10
