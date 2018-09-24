@@ -20,7 +20,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('generate-user', generate_random_user),
+    path('generate-user/', generate_random_user),
     path('get-task-info/', get_task_info),
 ]
 
