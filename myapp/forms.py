@@ -1,7 +1,5 @@
 from django import forms
-from django.core.validators import MinValueValidator
 from django.utils.safestring import mark_safe
-
 
 
 class SlotProfileDataForm(forms.Form):

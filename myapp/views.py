@@ -9,7 +9,7 @@ import numpy as np
 
 def generate_random_user(request):
     if request.method == 'POST':
-        form = SlotProfileDataForm(request.POST)
+        form = SlotProfileDataForm(request.POST, request.FILES)
         if form.is_valid():
             alpha = form.cleaned_data.get('alpha')
             L = form.cleaned_data.get('L')
