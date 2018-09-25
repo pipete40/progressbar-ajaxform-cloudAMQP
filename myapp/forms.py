@@ -12,6 +12,7 @@ class GenerateRandomUserForm(forms.Form):
         ]
     )
 
+
 class SlotProfileDataForm(forms.Form):
     L = forms.IntegerField(min_value=2, max_value=3, label='Number of slot types', initial=3 )
     nskus = forms.IntegerField(min_value=10, max_value=1000, label='Number of skus', initial=100)

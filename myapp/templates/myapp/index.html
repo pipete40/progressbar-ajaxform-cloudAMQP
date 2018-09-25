@@ -17,7 +17,9 @@
 
 <form id="generate-user-form" action="/generate-user/" method="post">
     {% csrf_token %}
-    {{ form }}
+    <table >
+        {{ form.as_table }}
+    </table>
     <input type="submit" value="Submit"/>
 </form>
 
