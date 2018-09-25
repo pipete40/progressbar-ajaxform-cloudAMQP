@@ -30,15 +30,20 @@
     var rel = $('#result');
 
     frm.submit(function () {
-        var data = new FormData(frm.get(0));
 
         $.ajax({
             type: frm.attr('method'),
             url: frm.attr('action'),
-            data: data,
+
+            // Form data
+            data: new FormData($('#generate-user-form')[0]),
+
+            // Tell jQuery not to process data or worry about content-type
+            // You *must* include these options!
             cache: false,
-            processData: false,
             contentType: false,
+            processData: false,
+
             success: function (data) {
                 if (data.task_id != null) {
                     get_task_info(data.task_id);
