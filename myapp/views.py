@@ -3,21 +3,22 @@ from django.shortcuts import render
 import json
 from celery.result import AsyncResult
 from django.http import HttpResponse
-from myapp.forms import GenerateRandomUserForm
+from myapp.forms import SlotProfileDataForm
 from myapp.tasks import create_random_user_accounts
+
 
 
 def generate_random_user(request):
     if request.method == 'POST':
-        form = GenerateRandomUserForm(request.POST)
+        form = SlotProfileDataForm(request.POST)
         if form.is_valid():
-            total_user = form.cleaned_data.get('total_user')
+            total_user = form.cleaned_data.get('L')*10
             task = create_random_user_accounts.delay(total_user)
             return HttpResponse(json.dumps({'task_id': task.id}), content_type='application/json')
         else:
             return HttpResponse(json.dumps({'task_id': None}), content_type='application/json')
     else:
-        form = GenerateRandomUserForm
+        form = SlotProfileDataForm
     return render(request, 'myapp/index.html', {'form': form})
 
 
