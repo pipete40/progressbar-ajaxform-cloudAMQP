@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import render
 from celery.result import AsyncResult
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseServerError
 from myapp.forms import SlotProfileDataForm
 from myapp.tasks import create_random_user_accounts
 import numpy as np
@@ -30,7 +30,7 @@ def generate_random_user(request):
             else:
                 return HttpResponse(json.dumps({'task_id': None}), content_type='application/json')
         except:
-            raise Exception
+            return HttpResponseServerError("Bad boy")
     else:
         form = SlotProfileDataForm
     return render(request, 'myapp/index.html', {'form': form})
