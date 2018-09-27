@@ -13,10 +13,6 @@ class SlotProfileDataForm(forms.Form):
     hs = forms.FileField(label = mark_safe("Pallet height of each sku <i class='fa fa-question-circle' aria-hidden='true' title='Upload a csv file with one column and as many rows as skus.'></i>"),
                          help_text = mark_safe("Download an <a href='/static/files/hs.csv'> example </a> with 100 skus"),
                          widget=forms.FileInput(attrs={'accept': ".csv"})) #validators = [validators.validate_hs])
-    invs = forms.FileField(label= mark_safe("Inventory level of each sku <i class='fa fa-question-circle' aria-hidden='true' title='Upload a csv file with as many rows as skus and as many columns as time-periods. Include at least 100 time-periods for a good analysis.'></i>"),
-                           help_text= mark_safe("Download an <a href='/static/files/invs.csv'> example </a> with 100 skus"),
-                           widget=forms.FileInput(attrs={'accept': ".csv"}))
-
 
 
     def clean_L(self):
@@ -67,35 +63,4 @@ class SlotProfileDataForm(forms.Form):
 
         return hs
 
-    def clean_invs(self):
-        csvfile = self.cleaned_data.get("invs")
-        nskus = int(self.cleaned_data.get("nskus"))
 
-        try:
-            invs = np.genfromtxt(csvfile, delimiter=',')
-        except:
-            raise ValidationError(
-                _('could not be read as an 2D array of numbers'),
-            )
-
-        if len(invs.shape) != 2:
-            raise ValidationError(
-                _('must be a 2D array'),
-            )
-        elif invs.shape[0] != nskus:
-            raise ValidationError(
-                _('There are %(v1) rows of inventory levels, but %(v2) skus'),
-                params={'v1': str(invs.shape[0]), 'v2': str(nskus)},
-            )
-
-        if np.min(invs) < 0:
-            raise ValidationError(
-                _('There are negative inventory levels'),
-            )
-
-        if np.isnan(np.sum(invs)):
-            raise ValidationError(
-                _('There are non-numeric characters'),
-            )
-
-        return invs

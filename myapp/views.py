@@ -11,18 +11,16 @@ def read_params(request, form):
     L = form.cleaned_data['L']
     b = form.cleaned_data['b']
     hs = form.cleaned_data['hs'] +  b
-    invs = form.cleaned_data['invs']
     M = form.cleaned_data['M']
-    return hs, invs, alpha, L, M
+    return hs, alpha, L, M
 
 
 def generate_random_user(request):
     if request.method == 'POST':
         form = SlotProfileDataForm(request.POST, request.FILES)
         if form.is_valid():
-            hs, invs, alpha, L, M = read_params(request, form)
-            total_user = int(np.mean(hs))*5
-            task = create_random_user_accounts.delay(total_user)
+            hs, alpha, L, M = read_params(request, form)
+            task = create_random_user_accounts.delay(11)
             return HttpResponse(json.dumps({'task_id': task.id}), content_type='application/json')
         else:
             return HttpResponse(json.dumps({'task_id': None}), content_type='application/json')
