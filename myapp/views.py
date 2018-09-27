@@ -30,7 +30,7 @@ def generate_random_user(request):
             else:
                 return HttpResponse(json.dumps({'task_id': None}), content_type='application/json')
         except:
-            raise HttpResponse('<h1> We are in trouble </h1>')
+            raise Exception
     else:
         form = SlotProfileDataForm
     return render(request, 'myapp/index.html', {'form': form})
