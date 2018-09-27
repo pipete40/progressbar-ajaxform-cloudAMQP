@@ -7,6 +7,8 @@ from myapp.tasks import create_random_user_accounts
 import numpy as np
 import time
 
+
+
 def read_params(request, form):
     alpha = form.cleaned_data['alpha']
     L = form.cleaned_data['L']
@@ -18,14 +20,17 @@ def read_params(request, form):
 
 def generate_random_user(request):
     if request.method == 'POST':
-        form = SlotProfileDataForm(request.POST, request.FILES)
-        if form.is_valid():
-            hs, alpha, L, M = read_params(request, form)
-            #time.sleep(3)
-            task = create_random_user_accounts.delay(11)
-            return HttpResponse(json.dumps({'task_id': task.id}), content_type='application/json')
-        else:
-            return HttpResponse(json.dumps({'task_id': None}), content_type='application/json')
+        try:
+            form = SlotProfileDataForm(request.POST, request.FILES)
+            if form.is_valid():
+                hs, alpha, L, M = read_params(request, form)
+                #time.sleep(3)
+                task = create_random_user_accounts.delay(11)
+                return HttpResponse(json.dumps({'task_id': task.id}), content_type='application/json')
+            else:
+                return HttpResponse(json.dumps({'task_id': None}), content_type='application/json')
+        except:
+            raise HttpResponse('<h1> We are in trouble </h1>')
     else:
         form = SlotProfileDataForm
     return render(request, 'myapp/index.html', {'form': form})
