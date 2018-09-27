@@ -32,35 +32,7 @@ class SlotProfileDataForm(forms.Form):
 
     def clean_hs(self):
         csvfile = self.cleaned_data.get("hs")
-        nskus = int(self.cleaned_data.get("nskus"))
-
-        try:
-            hs = np.genfromtxt(csvfile, delimiter=',')
-        except:
-            raise ValidationError(
-                _('could not be read as an array of numbers'),
-            )
-
-        if len(hs.shape) > 1:
-            raise ValidationError(
-                _('must be a one-dimensional array'),
-            )
-        elif hs.shape[0] != nskus:
-            raise ValidationError(
-                _('There are %(v1) pallet height, but %(v2) skus'),
-                params={'v1': str(hs.shape[0]), 'v2': str(nskus)},
-            )
-
-        if np.min(hs) < 0:
-            raise ValidationError(
-                _('There are negative pallet heights'),
-            )
-
-        if np.isnan(np.sum(hs)):
-            raise ValidationError(
-                _('There are non-numeric characters'),
-            )
-
+        hs = np.genfromtxt(csvfile, delimiter=',')
         return hs
 
 

@@ -5,12 +5,13 @@ from django.http import HttpResponse
 from myapp.forms import SlotProfileDataForm
 from myapp.tasks import create_random_user_accounts
 import numpy as np
+import time
 
 def read_params(request, form):
     alpha = form.cleaned_data['alpha']
     L = form.cleaned_data['L']
     b = form.cleaned_data['b']
-    hs = form.cleaned_data['hs'] +  b
+    hs = form.cleaned_data['hs']
     M = form.cleaned_data['M']
     return hs, alpha, L, M
 
@@ -20,6 +21,7 @@ def generate_random_user(request):
         form = SlotProfileDataForm(request.POST, request.FILES)
         if form.is_valid():
             hs, alpha, L, M = read_params(request, form)
+            #time.sleep(3)
             task = create_random_user_accounts.delay(11)
             return HttpResponse(json.dumps({'task_id': task.id}), content_type='application/json')
         else:

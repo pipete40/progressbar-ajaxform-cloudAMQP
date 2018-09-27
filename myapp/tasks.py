@@ -15,7 +15,7 @@ def create_random_user_accounts(total_user):
         password = get_random_string(50)
         User.objects.create_user(username=username, email=email, password=password)
         """
-        time.sleep(0.1)
+        time.sleep(0.01)
 
         current_task.update_state(state='PROGRESS',
                                   meta={'current': i, 'total': total_user,
