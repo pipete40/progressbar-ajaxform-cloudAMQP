@@ -8,7 +8,6 @@ import numpy as np
 import time
 
 
-
 def read_params(request, form):
     alpha = form.cleaned_data['alpha']
     L = form.cleaned_data['L']
@@ -17,33 +16,15 @@ def read_params(request, form):
     M = form.cleaned_data['M']
     return hs, alpha, L, M
 
-
 def generate_random_user(request):
     if request.method == 'POST':
-        try:
-            form = SlotProfileDataForm(request.POST, request.FILES)
-            if form.is_valid():
-                hs, alpha, L, M = read_params(request, form)
-                #time.sleep(3)
-                task = create_random_user_accounts.delay(11)
-                return HttpResponse(json.dumps({'task_id': task.id}), content_type='application/json')
-            else:
-                return HttpResponse(json.dumps({'task_id': None}), content_type='application/json')
-        except:
-            return HttpResponseServerError("Bad boy")
+        form = SlotProfileDataForm(request.POST, request.FILES)
+        if form.is_valid():
+            hs, alpha, L, M = read_params(request, form)
+            task = create_random_user_accounts(11)
+            a = np.mean(hs) + np.random.rand()
+            return render(request, 'myapp/index.html', {'form': form, 'sub': True, 'txt': a})
     else:
         form = SlotProfileDataForm
     return render(request, 'myapp/index.html', {'form': form})
 
-
-def get_task_info(request):
-    task_id = request.GET.get('task_id', None)
-    if task_id is not None:
-        task = AsyncResult(task_id)
-        data = {
-            'state': task.state,
-            'result': task.result,
-        }
-        return HttpResponse(json.dumps(data), content_type='application/json')
-    else:
-        return HttpResponse('No job id given.')

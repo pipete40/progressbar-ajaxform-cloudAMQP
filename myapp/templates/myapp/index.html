@@ -14,7 +14,7 @@
 
 <progress id="progress-bar" value="0" max="100" style="display:none; margin-bottom: 1em;"></progress>
 
-<form id="generate-user-form" action="/generate-user/" method="post" enctype="multipart/form-data" >
+<form id="generate-user-form" action="/" method="post" enctype="multipart/form-data" >
     {% csrf_token %}
     <table >
         {{ form.as_table }}
@@ -22,68 +22,9 @@
     <input type="submit" value="Submit"/>
 </form>
 
-<p id="result"> Hola </p>
-
-<script type="text/javascript">
-    var frm = $('#generate-user-form');
-    var pgrbar = $('#progress-bar');
-    var rel = $('#result');
-
-    frm.submit(function () {
-
-        $.ajax({
-            type: frm.attr('method'),
-            url: frm.attr('action'),
-
-            // Form data
-            data: new FormData($('#generate-user-form')[0]),
-
-            // Tell jQuery not to process data or worry about content-type
-            // You *must* include these options!
-            cache: false,
-            contentType: false,
-            processData: false,
-
-            success: function (data) {
-                if (data.task_id != null) {
-                    get_task_info(data.task_id);
-                }
-            },
-            error: function (data) {
-                console.log("Something went wrong! A");
-            }
-        });
-        return false;
-    });
-
-    function get_task_info(task_id) {
-        $.ajax({
-            type: 'get',
-            url: '/get-task-info/',
-            data: {'task_id': task_id},
-            success: function (data) {
-                frm.html('');
-                if (data.state == 'PROGRESS') {
-                    pgrbar.css('display', 'inline');
-                    pgrbar.val(data.result.percent);
-                }
-                else if (data.state == 'SUCCESS'){
-                    rel.text("Results of " + data.result.total);
-                    pgrbar.css('display', 'none');
-                }
-                if (data.state != 'SUCCESS') {
-                    setTimeout(function () {
-                        get_task_info(task_id)
-                    }, 300);
-                }
-            },
-            error: function (data) {
-                rel.text("Something went wrong! B");
-            }
-        });
-    }
-</script>
-
+{% if sub %}
+    <p id="result"> Hola {{txt}} </p>
+{% endif %}
 
 </body>
 </html>

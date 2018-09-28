@@ -14,7 +14,6 @@ class SlotProfileDataForm(forms.Form):
                          help_text = mark_safe("Download an <a href='/static/files/hs.csv'> example </a> with 100 skus"),
                          widget=forms.FileInput(attrs={'accept': ".csv"})) #validators = [validators.validate_hs])
 
-
     def clean_L(self):
         return int(self.cleaned_data.get("L"))
 
