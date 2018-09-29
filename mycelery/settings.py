@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
-    'storages',
 ]
 
 MIDDLEWARE = [
@@ -140,7 +139,6 @@ CELERYD_PREFETCH_MULTIPLIER = 1 # Disable prefetching, it's causes problems and 
 CELERYD_CONCURRENCY = 10
 """
 
-
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'warehousingtools-1130622839'
+AWS_STORAGE_BUCKET_NAME = os.environ.get('S3_BUCKET')

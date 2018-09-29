@@ -1,1 +1,1 @@
-web: gunicorn mycelery.wsgi --timeout 5
+web: gunicorn mycelery.wsgi --timeout 20

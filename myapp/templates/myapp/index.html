@@ -22,12 +22,26 @@
     <input type="submit" value="Submit"/>
 </form>
 
-<p id="result"> Hola </p>
+
+<p id="result">  </p>
+
+<p > {{ txt }}  </p>
+
+
+<div id="spinner-hs" style="display: none">
+    <img src="/static/bars.gif" width="30" height="30" />
+</div>
 
 
 <script>
+     var frm = $('#generate-user-form');
+
     (function() {
       document.getElementById("id_hs").onchange = function(){
+        $('#spinner-hs').show();
+        $("#id_hs").after($('#spinner-hs'));
+        $("#id_hs").css('display', 'none');
+
         var files = document.getElementById("id_hs").files;
         var file = files[0];
         if(!file){
@@ -41,7 +55,7 @@
         $.ajax({
                 type: 'get',
                 url: 'sign-s3/',
-                data: {'filename': file.name, 'filetype': file.type},
+                data: {'filename': makeid(), 'filetype': file.type},
 
                 success: function (data) {
                      uploadFile(file, data.presigned, data.url);
@@ -70,7 +84,10 @@
 
         if(xhr.readyState === 4){
           if(xhr.status === 200 || xhr.status === 204){
-            document.getElementById("result").innerText = url;
+              $("#id_hs").css('display', 'inline');
+              $("#spinner-hs").css('display', 'none');
+
+              document.getElementById("id_hsurl").value=url;
           }
           else{
 
@@ -79,6 +96,20 @@
        }
       };
       xhr.send(postData);
+    }
+
+    frm.submit(function () {
+        $("#id_hs").val("");
+    });
+
+    function makeid() {
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for (var i = 0; i < 8; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+      return text;
     }
 
 </script>

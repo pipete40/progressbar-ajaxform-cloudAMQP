@@ -9,15 +9,18 @@ import time
 import os
 import boto3
 from botocore.client import Config
+
 from django.conf import settings
+
 
 def read_params(request, form):
     alpha = form.cleaned_data['alpha']
     L = form.cleaned_data['L']
     b = form.cleaned_data['b']
-    hs = form.cleaned_data['hs']
     M = form.cleaned_data['M']
+    hs = form.cleaned_data['hsurl']
     return hs, alpha, L, M
+
 
 def generate_random_user(request):
     if request.method == 'POST':
@@ -39,15 +42,14 @@ def sign_s3(request):
 
     if (file_name is not None) and (file_type is not None):
 
-
         # Load necessary information into the application
         S3_BUCKET = settings.AWS_STORAGE_BUCKET_NAME
 
 
         # Initialise the S3 client
-        s3 = boto3.client('s3',
-            aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
-            aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+        s3 = boto3.client('s3', 'us-east-2',
+            #aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+            #aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
             config=Config(signature_version='s3v4'),
         )
 
