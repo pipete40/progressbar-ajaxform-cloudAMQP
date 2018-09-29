@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from myapp.views import generate_random_user
+from myapp.views import generate_random_user, sign_s3
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', generate_random_user),
+    path('sign-s3/', sign_s3),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

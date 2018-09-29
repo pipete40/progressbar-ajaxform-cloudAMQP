@@ -22,9 +22,67 @@
     <input type="submit" value="Submit"/>
 </form>
 
-{% if sub %}
-    <p id="result"> Hola {{txt}} </p>
-{% endif %}
+<p id="result"> Hola </p>
+
+
+<script>
+    (function() {
+      document.getElementById("id_hs").onchange = function(){
+        var files = document.getElementById("id_hs").files;
+        var file = files[0];
+        if(!file){
+          return alert("No file selected.");
+        }
+        getSignedRequest(file);
+      };
+    })();
+
+    function getSignedRequest(file){
+        $.ajax({
+                type: 'get',
+                url: 'sign-s3/',
+                data: {'filename': file.name, 'filetype': file.type},
+
+                success: function (data) {
+                     uploadFile(file, data.presigned, data.url);
+                },
+                error: function (data) {
+                    alert("Could not get signed URL with our storage service. Please report this problem");
+                }
+        });
+    }
+
+    function uploadFile(file, presigned, url){
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", presigned.url);
+      console.log( presigned.url);
+
+      var postData = new FormData();
+      for(key in presigned.fields){
+          postData.append(key, presigned.fields[key]);
+          console.log( presigned.fields[key]);
+      }
+      postData.append('file', file);
+      console.log(postData);
+
+      xhr.onreadystatechange = function() {
+        console.log(xhr)
+
+        if(xhr.readyState === 4){
+          if(xhr.status === 200 || xhr.status === 204){
+            document.getElementById("result").innerText = url;
+          }
+          else{
+
+              alert("Could not upload file.");
+          }
+       }
+      };
+      xhr.send(postData);
+    }
+
+</script>
 
 </body>
 </html>
+

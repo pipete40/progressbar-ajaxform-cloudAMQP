@@ -11,8 +11,7 @@ class SlotProfileDataForm(forms.Form):
     b = forms.DecimalField(min_value=0, label='Vertical clearance within slot', initial=10)
     M = forms.IntegerField(min_value=1, label= 'Pallet positions per slot', initial=2)
     hs = forms.FileField(label = mark_safe("Pallet height of each sku <i class='fa fa-question-circle' aria-hidden='true' title='Upload a csv file with one column and as many rows as skus.'></i>"),
-                         help_text = mark_safe("Download an <a href='/static/files/hs.csv'> example </a> with 100 skus"),
-                         widget=forms.FileInput(attrs={'accept': ".csv"})) #validators = [validators.validate_hs])
+                         widget=forms.FileInput(attrs={'accept': ".csv"}))
 
     def clean_L(self):
         return int(self.cleaned_data.get("L"))
